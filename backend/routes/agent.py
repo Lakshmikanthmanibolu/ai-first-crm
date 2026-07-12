@@ -5,8 +5,8 @@ import re
 from typing import Optional, List
 from fastapi import APIRouter
 from langchain_core.messages import HumanMessage, AIMessage
-from backend.schemas import ChatRequest, ChatResponse, ToolExecution, WorkflowStep
-from backend.agent.graph import get_agent
+from schemas import ChatRequest, ChatResponse, ToolExecution, WorkflowStep
+from agent.graph import get_agent
 
 router = APIRouter(prefix="/api/agent", tags=["AI Agent"])
 
