@@ -2,9 +2,9 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from typing import Optional
 from collections import Counter
-from backend.database import get_db
-from backend.models import HCP, Interaction, Product
-from backend.schemas import HCPCreate, HCPUpdate, HCPResponse, HCPInsights
+from database import get_db
+from models import HCP, Interaction, Product
+from schemas import HCPCreate, HCPUpdate, HCPResponse, HCPInsights
 
 router = APIRouter(prefix="/api/hcps", tags=["HCPs"])
 
