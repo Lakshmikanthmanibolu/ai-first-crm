@@ -4,9 +4,9 @@ from sqlalchemy import func
 from typing import Optional
 from collections import Counter
 import datetime
-from backend.database import get_db
-from backend.models import Interaction, HCP, Product, interaction_products
-from backend.schemas import (
+from database import get_db
+from models import Interaction, HCP, Product, interaction_products
+from schemas import (
     InteractionCreate, InteractionUpdate, InteractionResponse, ProductResponse,
     DashboardStats
 )
