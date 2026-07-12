@@ -3,7 +3,7 @@ from sqlalchemy import (
     Column, Integer, String, Text, DateTime, Float, ForeignKey, Table, Enum
 )
 from sqlalchemy.orm import relationship
-from backend.database import Base
+from database import Base
 import enum
 
 
