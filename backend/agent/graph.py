@@ -11,9 +11,9 @@ from langgraph.graph import StateGraph, END
 from langgraph.prebuilt import ToolNode
 from langchain_groq import ChatGroq
 from langchain_core.messages import SystemMessage
-from backend.agent.state import AgentState
-from backend.agent.tools import ALL_TOOLS
-from backend.config import GROQ_API_KEY, LLM_MODEL
+from agent.state import AgentState
+from agent.tools import ALL_TOOLS
+from config import GROQ_API_KEY, LLM_MODEL
 
 
 SYSTEM_PROMPT = """You are an AI CRM Agent for a pharmaceutical company, helping field sales representatives manage their interactions with Healthcare Professionals (HCPs).
