@@ -2,9 +2,9 @@
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.database import engine, Base, SessionLocal
-from backend.routes import hcps, interactions, products, agent
-from backend.seed_data import seed_database
+from database import engine, Base, SessionLocal
+from routes import hcps, interactions, products, agent
+from seed_data import seed_database
 
 # Create all tables
 Base.metadata.create_all(bind=engine)
