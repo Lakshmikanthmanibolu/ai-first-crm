@@ -2,7 +2,7 @@
 import json
 import datetime
 from sqlalchemy.orm import Session
-from backend.models import HCP, Product, Interaction, interaction_products
+from models import HCP, Product, Interaction, interaction_products
 
 
 SAMPLE_HCPS = [
