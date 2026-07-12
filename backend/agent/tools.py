@@ -16,8 +16,8 @@ import datetime
 from typing import Optional
 from langchain_core.tools import tool
 from sqlalchemy.orm import Session
-from backend.database import SessionLocal
-from backend.models import HCP, Interaction, Product, interaction_products
+from database import SessionLocal
+from models import HCP, Interaction, Product, interaction_products
 
 
 def _get_db() -> Session:
