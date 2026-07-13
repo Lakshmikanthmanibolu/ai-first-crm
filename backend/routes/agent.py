@@ -24,8 +24,8 @@ def extract_form_data(tool_executions):
             if "hcp_id" in args and args["hcp_id"]:
                 extracted["hcp_id"] = args["hcp_id"]
                 # Resolve name from DB
-                from backend.database import SessionLocal
-                from backend.models import HCP
+                from database import SessionLocal
+                from models import HCP
                 db = SessionLocal()
                 try:
                     hcp = db.query(HCP).filter(HCP.id == int(args["hcp_id"])).first()
@@ -81,7 +81,7 @@ def extract_form_data(tool_executions):
 async def chat(request: ChatRequest):
     """Process a chat message through the LangGraph agent."""
     try:
-        from backend.config import GROQ_API_KEY
+        from config import GROQ_API_KEY
         if not GROQ_API_KEY or GROQ_API_KEY.startswith("your_groq_api_key") or "gsk_" not in GROQ_API_KEY:
             # Trigger smart fallback agent logic so it works offline or without a real key
             msg_lower = request.message.lower()
@@ -170,7 +170,7 @@ async def chat(request: ChatRequest):
 
             # 1. search_hcp
             elif "search" in msg_lower or "find" in msg_lower or "doctor" in msg_lower or "cardiologist" in msg_lower:
-                from backend.agent.tools import search_hcp
+                from agent.tools import search_hcp
                 query = "Sarah Chen"
                 if "rodriguez" in msg_lower: query = "Rodriguez"
                 elif "patel" in msg_lower: query = "Patel"
@@ -186,7 +186,7 @@ async def chat(request: ChatRequest):
                 
             # 3. get_interaction_history
             elif "history" in msg_lower or "past" in msg_lower or "meetings" in msg_lower or "summarize last" in msg_lower:
-                from backend.agent.tools import get_interaction_history
+                from agent.tools import get_interaction_history
                 workflow_steps.append(WorkflowStep(step_name="Retrieve History", status="completed", description="Executing get_interaction_history tool", tool_name="get_interaction_history"))
                 res = get_interaction_history.invoke({"hcp_id": 1})
                 tool_executions.append(ToolExecution(tool_name="get_interaction_history", tool_input={"hcp_id": 1}, tool_output=res))
@@ -195,7 +195,7 @@ async def chat(request: ChatRequest):
 
             # 4. suggest_talking_points
             elif "talking points" in msg_lower or "prepare" in msg_lower or "discussion" in msg_lower:
-                from backend.agent.tools import suggest_talking_points
+                from agent.tools import suggest_talking_points
                 workflow_steps.append(WorkflowStep(step_name="Generate Talking Points", status="completed", description="Executing suggest_talking_points tool", tool_name="suggest_talking_points"))
                 res = suggest_talking_points.invoke({"hcp_id": 1})
                 tool_executions.append(ToolExecution(tool_name="suggest_talking_points", tool_input={"hcp_id": 1}, tool_output=res))
@@ -204,7 +204,7 @@ async def chat(request: ChatRequest):
 
             # 5. recommend_product
             elif "recommend" in msg_lower or "product" in msg_lower:
-                from backend.agent.tools import recommend_product
+                from agent.tools import recommend_product
                 workflow_steps.append(WorkflowStep(step_name="Recommend Product", status="completed", description="Executing recommend_product tool", tool_name="recommend_product"))
                 res = recommend_product.invoke({"hcp_id": 1})
                 tool_executions.append(ToolExecution(tool_name="recommend_product", tool_input={"hcp_id": 1}, tool_output=res))
@@ -213,7 +213,7 @@ async def chat(request: ChatRequest):
 
             # 6. generate_followup_email
             elif "email" in msg_lower or "followup email" in msg_lower or "draft" in msg_lower:
-                from backend.agent.tools import generate_followup_email
+                from agent.tools import generate_followup_email
                 workflow_steps.append(WorkflowStep(step_name="Generate Follow-up Email", status="completed", description="Executing generate_followup_email tool", tool_name="generate_followup_email"))
                 res = generate_followup_email.invoke({"interaction_id": 1})
                 tool_executions.append(ToolExecution(tool_name="generate_followup_email", tool_input={"interaction_id": 1}, tool_output=res))
