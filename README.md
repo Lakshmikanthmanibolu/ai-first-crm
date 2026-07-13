@@ -198,6 +198,3 @@ The agent uses a **ReAct (Reasoning + Acting)** pattern:
 | POST | `/api/agent/chat` | Chat with AI agent |
 | GET | `/api/health` | Health check |
 
-## 📄 License
-
-MIT
