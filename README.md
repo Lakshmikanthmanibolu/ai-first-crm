@@ -8,6 +8,9 @@ An AI-powered Customer Relationship Management system for Healthcare Professiona
 ![Tech Stack](https://img.shields.io/badge/LangGraph-AI_Agent-FF6B6B)
 ![Tech Stack](https://img.shields.io/badge/Groq-gemma2--9b--it-F55036)
 
+
+live hosted link:- https://ai-first-crm-rho.vercel.app/
+
 ## 🏗️ Architecture
 
 ```
